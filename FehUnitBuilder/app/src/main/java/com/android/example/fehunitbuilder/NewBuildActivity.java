@@ -29,6 +29,14 @@ public class NewBuildActivity extends AppCompatActivity {
     public static final String EXTRA_REPLY_ID = "com.android.example.fehunitbuilder.REPLY_ID";
 
     private EditText mEditBuildView;
+    private EditText mEditUnitView;
+    private EditText mEditWeaponView;
+    private EditText mEditAssistView;
+    private EditText mEditSpecialView;
+    private EditText mEditASkillView;
+    private EditText mEditBSkillView;
+    private EditText mEditCSkillView;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,6 +44,14 @@ public class NewBuildActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_build);
 
         mEditBuildView = findViewById(R.id.edit_build);
+        mEditUnitView = findViewById(R.id.edit_unit);
+        mEditWeaponView = findViewById(R.id.edit_weapon);
+        mEditAssistView = findViewById(R.id.edit_assist);
+        mEditSpecialView = findViewById(R.id.edit_special);
+        mEditASkillView = findViewById(R.id.edit_a_skill);
+        mEditBSkillView = findViewById(R.id.edit_b_skill);
+        mEditCSkillView = findViewById(R.id.edit_c_skill);
+
         int id = -1 ;
 
         final Bundle extras = getIntent().getExtras();
@@ -47,6 +63,8 @@ public class NewBuildActivity extends AppCompatActivity {
                 mEditBuildView.setText(build);
                 mEditBuildView.setSelection(build.length());
                 mEditBuildView.requestFocus();
+
+                // Evan: Will add the above 3 for the other editviews in the morning
             }
         } // Otherwise, start with empty fields.
 

@@ -10,8 +10,72 @@
     <EditText
         android:id="@+id/edit_build"
         style="@style/text_view_style"
-        android:hint="@string/hint_word"
-        android:inputType="textAutoComplete" />
+        android:hint="@string/hint_build"
+        android:inputType="textAutoComplete"
+        android:autofillHints="Build Name" />
+
+    <EditText
+        android:id="@+id/edit_unit"
+        style="@style/text_view_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_unit"
+        android:inputType="textAutoComplete"
+        android:autofillHints="Unit Name" />
+
+    <EditText
+        android:id="@+id/edit_weapon"
+        style="@style/text_view_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_weapon"
+        android:inputType="textAutoComplete"
+        android:autofillHints="Weapon Name" />
+
+    <EditText
+        android:id="@+id/edit_assist"
+        style="@style/text_view_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_assist"
+        android:inputType="textAutoComplete"
+        android:autofillHints="Assist Name" />
+
+    <EditText
+        android:id="@+id/edit_special"
+        style="@style/text_view_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_special"
+        android:inputType="textAutoComplete"
+        android:autofillHints="Special Name" />
+
+    <EditText
+        android:id="@+id/edit_a_skill"
+        style="@style/text_view_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_a_skill"
+        android:inputType="textAutoComplete"
+        android:autofillHints="A Skill Name" />
+
+    <EditText
+        android:id="@+id/edit_b_skill"
+        style="@style/text_view_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_b_skill"
+        android:inputType="textAutoComplete"
+        android:autofillHints="B Skill Name" />
+
+    <EditText
+        android:id="@+id/edit_c_skill"
+        style="@style/text_view_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_c_skill"
+        android:inputType="textAutoComplete"
+        android:autofillHints="C Skill Name" />
 
     <Button
         android:id="@+id/button_save"
