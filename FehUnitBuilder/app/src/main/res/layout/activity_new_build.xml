@@ -63,7 +63,7 @@
         android:id="@+id/edit_b_skill"
         style="@style/text_view_style"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:hint="@string/hint_b_skill"
         android:inputType="textAutoComplete"
         android:autofillHints="B Skill Name" />
@@ -72,7 +72,7 @@
         android:id="@+id/edit_c_skill"
         style="@style/text_view_style"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:hint="@string/hint_c_skill"
         android:inputType="textAutoComplete"
         android:autofillHints="C Skill Name" />

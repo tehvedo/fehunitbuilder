@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import static com.android.example.fehunitbuilder.MainActivity.EXTRA_DATA_ID;
 import static com.android.example.fehunitbuilder.MainActivity.EXTRA_DATA_UPDATE_BUILD;
@@ -88,14 +89,15 @@ public class NewBuildActivity extends AppCompatActivity {
                     if (TextUtils.isEmpty(mEditBuildView[0].getText())) {
                         // No build was entered, set the result accordingly.
                         setResult(RESULT_CANCELED, replyIntent);
+                        Toast.makeText(NewBuildActivity.this, "No build entered.", Toast.LENGTH_LONG).show();
                     } else {
+                        Toast.makeText(NewBuildActivity.this, "Build entered, saving.", Toast.LENGTH_LONG).show();
                         // Get the new build that the user entered.
-                        String[] buildArray = new String[8];
                         for (int i = 0; i < 8; i++) {
-                            buildArray[i] = mEditBuildView[i].getText().toString();
+                            replyIntent.putExtra(EXTRA_REPLY, mEditBuildView[i].getText().toString());
                         }
                         // Put the new build in the extras for the reply Intent.
-                        replyIntent.putExtra(EXTRA_REPLY, buildArray);
+                        //replyIntent.putExtra(EXTRA_REPLY, buildArray);
                         if (extras.containsKey(EXTRA_DATA_ID)) {
                             int id = extras.getInt(EXTRA_DATA_ID, -1);
                             if (id != -1) {

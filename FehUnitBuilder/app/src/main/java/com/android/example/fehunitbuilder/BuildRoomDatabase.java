@@ -75,6 +75,9 @@ public abstract class BuildRoomDatabase extends RoomDatabase {
         @Override
         protected Void doInBackground(final Void... params) {
             // If we have no builds, then create the initial list of builds.
+            Build test = new Build(13, "Test");
+            test.setUnit("Dimwit");
+            mDao.insert(test);
             if (mDao.getAnyBuild().length < 1) {
                 for (int i = 0; i <= builds.length - 1; i++) {
                     Build build = new Build(i, builds[i]);
