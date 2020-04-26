@@ -37,7 +37,7 @@ public interface BuildDao {
     @Query("SELECT * from build_table LIMIT 1")
     Build[] getAnyBuild();
 
-    @Query("SELECT * from build_table ORDER BY name ASC")
+    @Query("SELECT * from build_table ORDER BY build ASC")
     LiveData<List<Build>> getAllBuilds();
 
     @Update

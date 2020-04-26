@@ -40,6 +40,13 @@ public class MainActivity extends AppCompatActivity {
     public static final int UPDATE_BUILD_ACTIVITY_REQUEST_CODE = 2;
 
     public static final String EXTRA_DATA_UPDATE_BUILD = "extra_build_to_be_updated";
+    public static final String EXTRA_DATA_UPDATE_UNIT = "extra_unit_to_be_updated";
+    public static final String EXTRA_DATA_UPDATE_WEAPON = "extra_weapon_to_be_updated";
+    public static final String EXTRA_DATA_UPDATE_ASSIST = "extra_assist_to_be_updated";
+    public static final String EXTRA_DATA_UPDATE_SPECIAL = "extra_special_to_be_updated";
+    public static final String EXTRA_DATA_UPDATE_ASKILL = "extra_askill_to_be_updated";
+    public static final String EXTRA_DATA_UPDATE_BSKILL = "extra_bskill_to_be_updated";
+    public static final String EXTRA_DATA_UPDATE_CSKILL = "extra_cskill_to_be_updated";
     public static final String EXTRA_DATA_ID = "extra_data_id";
 
     private BuildViewModel mBuildViewModel;
@@ -100,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                         Build myBuild = adapter.getBuildAtPosition(position);
                         Toast.makeText(MainActivity.this,
                                 getString(R.string.delete_word_preamble) + " " +
-                                myBuild.getName(), Toast.LENGTH_LONG).show();
+                                myBuild.getBuild(), Toast.LENGTH_LONG).show();
 
                         // Delete the build.
                         mBuildViewModel.deleteBuild(myBuild);
@@ -159,12 +166,12 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == NEW_BUILD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Build build = new Build(data.getStringExtra(NewBuildActivity.EXTRA_REPLY));
+            Build build = new Build(Integer.parseInt(data.getStringExtra(NewBuildActivity.EXTRA_REPLY_ID)), data.getStringExtra(NewBuildActivity.EXTRA_REPLY));
             // Save the data.
             mBuildViewModel.insert(build);
         } else if (requestCode == UPDATE_BUILD_ACTIVITY_REQUEST_CODE
                 && resultCode == RESULT_OK) {
-            String build_data = data.getStringExtra(NewBuildActivity.EXTRA_REPLY);
+            String build_data = data.getStringExtra(NewBuildActivity.EXTRA_REPLY); //set build name for build_data
             int id = data.getIntExtra(NewBuildActivity.EXTRA_REPLY_ID, -1);
 
             if (id != -1) {
@@ -181,7 +188,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void launchUpdateBuildActivity(Build build) {
         Intent intent = new Intent(this, NewBuildActivity.class);
-        intent.putExtra(EXTRA_DATA_UPDATE_BUILD, build.getName());
+        intent.putExtra(EXTRA_DATA_UPDATE_BUILD, build.getBuild());
+        intent.putExtra(EXTRA_DATA_UPDATE_UNIT, build.getUnit());
+        intent.putExtra(EXTRA_DATA_UPDATE_WEAPON, build.getWeapon());
+        intent.putExtra(EXTRA_DATA_UPDATE_ASSIST, build.getAssist());
+        intent.putExtra(EXTRA_DATA_UPDATE_SPECIAL, build.getSpecial());
+        intent.putExtra(EXTRA_DATA_UPDATE_ASKILL, build.getASkill());
+        intent.putExtra(EXTRA_DATA_UPDATE_BSKILL, build.getBSkill());
+        intent.putExtra(EXTRA_DATA_UPDATE_CSKILL, build.getCSkill());
         intent.putExtra(EXTRA_DATA_ID, build.getId());
         startActivityForResult(intent, UPDATE_BUILD_ACTIVITY_REQUEST_CODE);
     }

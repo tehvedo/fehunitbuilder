@@ -39,7 +39,7 @@ public class BuildListAdapter extends RecyclerView.Adapter<BuildListAdapter.Buil
     public void onBindViewHolder(BuildViewHolder holder, int position) {
         if (mBuilds != null) {
             Build current = mBuilds.get(position);
-            holder.buildItemView.setText(current.getName());
+            holder.buildItemView.setText(current.getBuild());
         } else {
             // Covers the case of data not being ready yet.
             holder.buildItemView.setText(R.string.no_word);

@@ -77,7 +77,7 @@ public abstract class BuildRoomDatabase extends RoomDatabase {
             // If we have no builds, then create the initial list of builds.
             if (mDao.getAnyBuild().length < 1) {
                 for (int i = 0; i <= builds.length - 1; i++) {
-                    Build build = new Build(builds[i]);
+                    Build build = new Build(i, builds[i]);
                     mDao.insert(build);
                 }
             }
