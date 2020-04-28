@@ -1,9 +1,0 @@
-# Folders
-FehUnitBuilder/.gradle
-FehUnitBuilder/.idea
-
-# Files
-*.DS_Store
-FehUnitBuilder/local.properties
-FehUnitBuilder/FehUnitBuilder.iml
-!.gitignore
