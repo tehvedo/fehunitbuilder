@@ -1,9 +1,8 @@
-<<<<<<< Updated upstream
-=======
-
 # Folders
-/fehunitbuilder/FehUnitBuilder
+/*
+!/FehUnitBuilder/app
+!/FehUnitBuilder/gradle
 
 # Files
-.DS_Store
->>>>>>> Stashed changes
+*.DS_Store
+!.gitignore
