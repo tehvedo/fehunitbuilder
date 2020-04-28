@@ -171,11 +171,20 @@ public class MainActivity extends AppCompatActivity {
             mBuildViewModel.insert(build);
         } else if (requestCode == UPDATE_BUILD_ACTIVITY_REQUEST_CODE
                 && resultCode == RESULT_OK) {
-            String build_data = data.getStringExtra(NewBuildActivity.EXTRA_REPLY); //set build name for build_data
             int id = data.getIntExtra(NewBuildActivity.EXTRA_REPLY_ID, -1);
+            String build_name = data.getStringExtra(NewBuildActivity.EXTRA_REPLY); //set build name for build_data
 
             if (id != -1) {
-                mBuildViewModel.update(new Build(id, build_data));
+                Build temp = new Build(id, build_name); //set build name for build_data
+                temp.setBuild(data.getStringExtra(NewBuildActivity.EXTRA_DATA_UPDATE_BUILD));
+                temp.setUnit(data.getStringExtra(NewBuildActivity.EXTRA_DATA_UPDATE_UNIT));
+                temp.setWeapon(data.getStringExtra(NewBuildActivity.EXTRA_DATA_UPDATE_WEAPON));
+                temp.setAssist(data.getStringExtra(NewBuildActivity.EXTRA_DATA_UPDATE_ASSIST));
+                temp.setSpecial(data.getStringExtra(NewBuildActivity.EXTRA_DATA_UPDATE_SPECIAL));
+                temp.setASkill(data.getStringExtra(NewBuildActivity.EXTRA_DATA_UPDATE_ASKILL));
+                temp.setBSkill(data.getStringExtra(NewBuildActivity.EXTRA_DATA_UPDATE_BSKILL));
+                temp.setCSkill(data.getStringExtra(NewBuildActivity.EXTRA_DATA_UPDATE_CSKILL));
+                mBuildViewModel.update(new Build(id, build_name));
             } else {
                 Toast.makeText(this, R.string.unable_to_update,
                         Toast.LENGTH_LONG).show();

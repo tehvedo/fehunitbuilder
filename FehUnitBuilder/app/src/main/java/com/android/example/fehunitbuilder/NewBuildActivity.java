@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/*
 import static com.android.example.fehunitbuilder.MainActivity.EXTRA_DATA_ID;
 import static com.android.example.fehunitbuilder.MainActivity.EXTRA_DATA_UPDATE_BUILD;
 import static com.android.example.fehunitbuilder.MainActivity.EXTRA_DATA_UPDATE_UNIT;
@@ -23,7 +24,7 @@ import static com.android.example.fehunitbuilder.MainActivity.EXTRA_DATA_UPDATE_
 import static com.android.example.fehunitbuilder.MainActivity.EXTRA_DATA_UPDATE_SPECIAL;
 import static com.android.example.fehunitbuilder.MainActivity.EXTRA_DATA_UPDATE_ASKILL;
 import static com.android.example.fehunitbuilder.MainActivity.EXTRA_DATA_UPDATE_BSKILL;
-import static com.android.example.fehunitbuilder.MainActivity.EXTRA_DATA_UPDATE_CSKILL;
+import static com.android.example.fehunitbuilder.MainActivity.EXTRA_DATA_UPDATE_CSKILL;*/
 
 /**
  * This class displays a screen where the user enters a new build.
@@ -31,9 +32,20 @@ import static com.android.example.fehunitbuilder.MainActivity.EXTRA_DATA_UPDATE_
  * (MainActivity), which then stores the new build and updates the list of
  * displayed builds.
  */
+
 public class NewBuildActivity extends AppCompatActivity {
 
     public static final String EXTRA_REPLY = "com.example.android.fehunitbuilder.REPLY";
+    public static final String EXTRA_DATA_ID = "com.example.android.fehunitbuilder.DATA_ID";
+    public static final String EXTRA_DATA_UPDATE_BUILD = "com.example.android.fehunitbuilder.DATA_UPDATE_BUILD";
+    public static final String EXTRA_DATA_UPDATE_UNIT = "com.example.android.fehunitbuilder.DATA_UPDATE_UNIT";
+    public static final String EXTRA_DATA_UPDATE_WEAPON = "com.example.android.fehunitbuilder.DATA_UPDATE_WEAPON";
+    public static final String EXTRA_DATA_UPDATE_ASSIST = "com.example.android.fehunitbuilder.DATA_UPDATE_ASSIST";
+    public static final String EXTRA_DATA_UPDATE_SPECIAL = "com.example.android.fehunitbuilder.DATA_UPDATE_SPECIAL";
+    public static final String EXTRA_DATA_UPDATE_ASKILL = "com.example.android.fehunitbuilder.DATA_UPDATE_ASKILL";
+    public static final String EXTRA_DATA_UPDATE_BSKILL = "com.example.android.fehunitbuilder.DATA_UPDATE_BSKILL";
+    public static final String EXTRA_DATA_UPDATE_CSKILL = "com.example.android.fehunitbuilder.DATA_UPDATE_CSKILL";
+
     public static final String EXTRA_REPLY_ID = "com.android.example.fehunitbuilder.REPLY_ID";
 
     private EditText[] mEditBuildView = new EditText[8];
@@ -53,7 +65,7 @@ public class NewBuildActivity extends AppCompatActivity {
         mEditBuildView[6] = findViewById(R.id.edit_b_skill);
         mEditBuildView[7] = findViewById(R.id.edit_c_skill);
 
-        int id = -1;
+        //int id = -1;
 
         final Bundle extras = getIntent().getExtras();
         // If we are passed content, fill it in for the user to edit.
@@ -75,7 +87,6 @@ public class NewBuildActivity extends AppCompatActivity {
                 }
             } // Otherwise, start with empty fields.
 
-
             final Button button = findViewById(R.id.button_save);
 
             // When the user presses the Save button, create a new Intent for the reply.
@@ -92,12 +103,21 @@ public class NewBuildActivity extends AppCompatActivity {
                         Toast.makeText(NewBuildActivity.this, "No build entered.", Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(NewBuildActivity.this, "Build entered, saving.", Toast.LENGTH_LONG).show();
-                        // Get the new build that the user entered.
-                        for (int i = 0; i < 8; i++) {
-                            replyIntent.putExtra(EXTRA_REPLY, mEditBuildView[i].getText().toString());
-                        }
+
+                        // Set build name for screen
+                        replyIntent.putExtra(EXTRA_REPLY, mEditBuildView[0].getText().toString());
+
+                        // Set build details
+                        replyIntent.putExtra(EXTRA_DATA_UPDATE_BUILD, mEditBuildView[0].getText().toString());
+                        replyIntent.putExtra(EXTRA_DATA_UPDATE_UNIT, mEditBuildView[1].getText().toString());
+                        replyIntent.putExtra(EXTRA_DATA_UPDATE_WEAPON, mEditBuildView[2].getText().toString());
+                        replyIntent.putExtra(EXTRA_DATA_UPDATE_ASSIST, mEditBuildView[3].getText().toString());
+                        replyIntent.putExtra(EXTRA_DATA_UPDATE_SPECIAL, mEditBuildView[4].getText().toString());
+                        replyIntent.putExtra(EXTRA_DATA_UPDATE_ASKILL, mEditBuildView[5].getText().toString());
+                        replyIntent.putExtra(EXTRA_DATA_UPDATE_BSKILL, mEditBuildView[6].getText().toString());
+                        replyIntent.putExtra(EXTRA_DATA_UPDATE_CSKILL, mEditBuildView[7].getText().toString());
+
                         // Put the new build in the extras for the reply Intent.
-                        //replyIntent.putExtra(EXTRA_REPLY, buildArray);
                         if (extras.containsKey(EXTRA_DATA_ID)) {
                             int id = extras.getInt(EXTRA_DATA_ID, -1);
                             if (id != -1) {
