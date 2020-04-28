@@ -1,9 +1,8 @@
 # Folders
-/*
+FehUnitBuilder/*
 !/FehUnitBuilder/app
 !/FehUnitBuilder/gradle
 
 # Files
 *.DS_Store
 !.gitignore
-FehUnitBuilder/.gradle/5.6.4/fileHashes/fileHashes.lock
