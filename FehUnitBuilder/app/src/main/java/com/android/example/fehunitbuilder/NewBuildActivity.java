@@ -11,8 +11,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 /**
@@ -47,12 +49,27 @@ public class NewBuildActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //save the build to the database
-                Build build = new Build(-1, et_build_name.getText().toString(), et_unit.getText().toString(),
-                        et_weapon.getText().toString(), et_assist.getText().toString(),
-                        et_special.getText().toString(), et_a_skill.getText().toString(),
-                        et_b_skill.getText().toString(), et_c_skill.getText().toString());
+                Build build;
+                try{
+                    build = new Build(-1, et_build_name.getText().toString(), et_unit.getText().toString(),
+                            et_weapon.getText().toString(), et_assist.getText().toString(),
+                            et_special.getText().toString(), et_a_skill.getText().toString(),
+                            et_b_skill.getText().toString(), et_c_skill.getText().toString());
 
-                Toast.makeText(getApplicationContext(), build.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), build.toString(), Toast.LENGTH_SHORT).show();
+                }
+                catch(Exception e){
+                    Toast.makeText(getApplicationContext(), "Error creating build.", Toast.LENGTH_SHORT).show();
+                    build = new Build(-1, "Error", "", "", "", "", "", "", "");
+                }
+
+
+                DataBaseHelper dataBaseHelper = new DataBaseHelper(NewBuildActivity.this);
+
+                boolean success = dataBaseHelper.addOne(build);
+
+                Toast.makeText(getApplicationContext(), "Success: " + success, Toast.LENGTH_SHORT).show();
+
             }
         });
 
