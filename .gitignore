@@ -1,8 +1,9 @@
 # Folders
-FehUnitBuilder/*
-!/FehUnitBuilder/app
-!/FehUnitBuilder/gradle
+FehUnitBuilder/.gradle
+FehUnitBuilder/.gradle
 
 # Files
 *.DS_Store
+FehUnitBuilder/local.properties
+FehUnitBuilder/FehUnitBuilder.iml
 !.gitignore
