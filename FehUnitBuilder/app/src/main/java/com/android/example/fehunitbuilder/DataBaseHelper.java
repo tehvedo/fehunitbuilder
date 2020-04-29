@@ -172,5 +172,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return returnList;
     }
 
+    public boolean deleteAllBuilds(){
+        String queryString = "DELETE FROM " + BUILD_TABLE;
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(queryString);
+        return true;
+    }
 
 }

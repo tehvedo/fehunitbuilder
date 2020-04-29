@@ -10,11 +10,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 /**
  * This class displays a list of builds in a ListView.
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     ListView lv_build_list;
     ArrayAdapter buildArrayAdapter;
     DataBaseHelper dataBaseHelper;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
         //GUI assignments
         fab_new_build = findViewById(R.id.fab);
         lv_build_list = findViewById(R.id.lv_buildList);
+        toolbar = findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
 
         //DataBaseHelper to interact with the DB
         dataBaseHelper = new DataBaseHelper(MainActivity.this);
@@ -99,6 +106,38 @@ public class MainActivity extends AppCompatActivity {
         //Every time the user returns to the MainActivity, update the build list
         buildArrayAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, dataBaseHelper.getAllBuilds());
         lv_build_list.setAdapter(buildArrayAdapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    // The options menu has a single item "Clear all data now"
+    // that deletes all the entries in the database.
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.clear_data) {
+            // Add a toast just for confirmation
+            Toast.makeText(this, R.string.clear_data_toast_text, Toast.LENGTH_LONG).show();
+
+            // Delete the existing data.
+            dataBaseHelper.deleteAllBuilds();
+
+            //Update list
+            buildArrayAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, dataBaseHelper.getAllBuilds());
+            lv_build_list.setAdapter(buildArrayAdapter);
+
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }
