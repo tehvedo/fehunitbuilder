@@ -16,123 +16,136 @@ import android.support.annotation.NonNull;
  * Entity class that represents a unit build in the database
  */
 
-@Entity(tableName = "build_table")
 public class Build {
-    @PrimaryKey(autoGenerate = true)
+
     private int id;
+    private String name;
+    private String unit;
+    private String weapon;
+    private String assist;
+    private String special;
+    private String a_skill;
+    private String b_skill;
+    private String c_skill;
 
-    @NonNull
-    @ColumnInfo(name = "build")
-    private String build = "build";
-
-    @NonNull
-    @ColumnInfo(name = "unit")
-    private String unit = "unit";
-
-    @NonNull
-    @ColumnInfo(name = "weapon")
-    private String weapon = "weapon";
-
-    @NonNull
-    @ColumnInfo(name = "assist")
-    private String assist = "assist";
-
-    @NonNull
-    @ColumnInfo(name = "special")
-    private String special = "special";
-
-    @NonNull
-    @ColumnInfo(name = "ASkill")
-    private String ASkill = "aSkill";
-
-    @NonNull
-    @ColumnInfo(name = "BSkill")
-    private String BSkill = "bSkill";
-
-    @NonNull
-    @ColumnInfo(name = "CSkill")
-    private String CSkill = "cSkill";
-
-    public Build(int id, @NonNull String build) {
-        setId(id);
-        setBuild(build);
-    }
-
-
-    public void setBuild(@NonNull String build) {
-        this.build = build;
-    }
-
-    public void setUnit(@NonNull String unit) {
+    public Build(int id, String name, String unit, String weapon, String assist, String special, String a_skill, String b_skill, String c_skill) {
+        this.id = id;
+        this.name = name;
         this.unit = unit;
-    }
-
-    public void setWeapon(@NonNull String weapon) {
         this.weapon = weapon;
-    }
-
-    public void setAssist(@NonNull String assist) {
         this.assist = assist;
-    }
-
-    public void setSpecial(@NonNull String special) {
         this.special = special;
+        this.a_skill = a_skill;
+        this.b_skill = b_skill;
+        this.c_skill = c_skill;
     }
 
-    public void setASkill(@NonNull String ASkill) {
-        this.ASkill = ASkill;
+    public Build(int id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
-    public void setBSkill(@NonNull String BSkill) {
-        this.BSkill = BSkill;
+    public Build() {
     }
 
-    public void setCSkill(@NonNull String CSkill) {
-        this.CSkill = CSkill;
+    @Override
+    public String toString() {
+        return "Build{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", unit='" + unit + '\'' +
+                ", weapon='" + weapon + '\'' +
+                ", assist='" + assist + '\'' +
+                ", special='" + special + '\'' +
+                ", a_skill='" + a_skill + '\'' +
+                ", b_skill='" + b_skill + '\'' +
+                ", c_skill='" + c_skill + '\'' +
+                '}';
     }
 
-    @NonNull
-    public String getBuild() {
-        return build;
+    public String[] getAll() {
+        String[] temp = new String[8];
+        temp[0] = name;
+        temp[1] = unit;
+        temp[2] = weapon;
+        temp[3] = assist;
+        temp[4] = special;
+        temp[5] = a_skill;
+        temp[6] = b_skill;
+        temp[7] = c_skill;
+
+        return temp;
     }
 
-    @NonNull
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getUnit() {
         return unit;
     }
 
-    @NonNull
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
     public String getWeapon() {
         return weapon;
     }
 
-    @NonNull
+    public void setWeapon(String weapon) {
+        this.weapon = weapon;
+    }
+
     public String getAssist() {
         return assist;
     }
 
-    @NonNull
+    public void setAssist(String assist) {
+        this.assist = assist;
+    }
+
     public String getSpecial() {
         return special;
     }
 
-    @NonNull
-    public String getASkill() {
-        return ASkill;
+    public void setSpecial(String special) {
+        this.special = special;
     }
 
-    @NonNull
-    public String getBSkill() {
-        return BSkill;
+    public String getA_skill() {
+        return a_skill;
     }
 
-    @NonNull
-    public String getCSkill() {
-        return CSkill;
+    public void setA_skill(String a_skill) {
+        this.a_skill = a_skill;
     }
 
-    public int getId() {return id;}
+    public String getB_skill() {
+        return b_skill;
+    }
 
-    public void setId(int id) {this.id = id;
+    public void setB_skill(String b_skill) {
+        this.b_skill = b_skill;
+    }
+
+    public String getC_skill() {
+        return c_skill;
+    }
+
+    public void setC_skill(String c_skill) {
+        this.c_skill = c_skill;
     }
 }
