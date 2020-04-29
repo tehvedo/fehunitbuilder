@@ -63,6 +63,20 @@ public class Build {
                 '}';
     }
 
+    public String[] getAll() {
+        String[] temp = new String[8];
+        temp[0] = name;
+        temp[1] = unit;
+        temp[2] = weapon;
+        temp[3] = assist;
+        temp[4] = special;
+        temp[5] = a_skill;
+        temp[6] = b_skill;
+        temp[7] = c_skill;
+
+        return temp;
+    }
+
     public int getId() {
         return id;
     }

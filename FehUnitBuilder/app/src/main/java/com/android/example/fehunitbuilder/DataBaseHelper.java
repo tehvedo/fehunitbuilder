@@ -78,6 +78,51 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public boolean updateBuild(Build build){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_BUILD_NAME, build.getName());
+        contentValues.put(COLUMN_BUILD_UNIT, build.getUnit());
+        contentValues.put(COLUMN_BUILD_WEAPON, build.getWeapon());
+        contentValues.put(COLUMN_BUILD_ASSIST, build.getAssist());
+        contentValues.put(COLUMN_BUILD_SPECIAL, build.getSpecial());
+        contentValues.put(COLUMN_BUILD_A_SKILL, build.getA_skill());
+        contentValues.put(COLUMN_BUILD_B_SKILL, build.getB_skill());
+        contentValues.put(COLUMN_BUILD_C_SKILL, build.getC_skill());
+        db.update(BUILD_TABLE, contentValues,
+                COLUMN_ID + " = ?", new String[] { Integer.toString(build.getId()) });
+        return true;
+    }
+
+    public Build getBuild(int i){
+        Build returnBuild = new Build();
+        String queryString = "SELECT * FROM " + BUILD_TABLE + " WHERE " + COLUMN_ID + " = " + i;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(queryString, null);
+        if(cursor.moveToFirst()){
+            int buildID = cursor.getInt(0);
+            String buildName = cursor.getString(1);
+            String buildUnit = cursor.getString(2);
+            String buildWeapon = cursor.getString(3);
+            String buildAssist = cursor.getString(4);
+            String buildSpecial = cursor.getString(5);
+            String buildASkill = cursor.getString(6);
+            String buildBSkill = cursor.getString(7);
+            String buildCSkill = cursor.getString(8);
+
+            returnBuild = new Build(buildID, buildName, buildUnit, buildWeapon
+                    , buildAssist, buildSpecial, buildASkill, buildBSkill, buildCSkill);
+        }
+        else{
+            //Don't add anything
+        }
+
+        cursor.close();
+        db.close();
+
+        return returnBuild;
+    }
+
     public List<Build> getAllBuilds(){
         List<Build> returnList = new ArrayList<>();
         String queryString = "SELECT * FROM " + BUILD_TABLE;
@@ -102,9 +147,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
             } while(cursor.moveToNext());
 
-        }
-        else{
-            //Don't add anything
         }
 
         cursor.close();

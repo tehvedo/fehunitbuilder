@@ -14,79 +14,71 @@
     android:orientation="vertical"
     android:padding="24dp">
 
-    <EditText
+    <TextView
         android:id="@+id/edit_build_name"
         style="@style/text_view_style"
         android:hint="@string/hint_build"
-        android:inputType="textAutoComplete"
         android:autofillHints="Build Name" />
 
-    <EditText
+    <TextView
         android:id="@+id/edit_unit"
         style="@style/text_view_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_unit"
-        android:inputType="textAutoComplete"
         android:autofillHints="Unit Name" />
 
-    <EditText
+    <TextView
         android:id="@+id/edit_weapon"
         style="@style/text_view_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_weapon"
-        android:inputType="textAutoComplete"
         android:autofillHints="Weapon Name" />
 
-    <EditText
+    <TextView
         android:id="@+id/edit_assist"
         style="@style/text_view_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_assist"
-        android:inputType="textAutoComplete"
         android:autofillHints="Assist Name" />
 
-    <EditText
+    <TextView
         android:id="@+id/edit_special"
         style="@style/text_view_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_special"
-        android:inputType="textAutoComplete"
         android:autofillHints="Special Name" />
 
-    <EditText
+    <TextView
         android:id="@+id/edit_a_skill"
         style="@style/text_view_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_a_skill"
-        android:inputType="textAutoComplete"
         android:autofillHints="A Skill Name" />
 
-    <EditText
+    <TextView
         android:id="@+id/edit_b_skill"
         style="@style/text_view_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_b_skill"
-        android:inputType="textAutoComplete"
         android:autofillHints="B Skill Name" />
 
-    <EditText
+    <TextView
         android:id="@+id/edit_c_skill"
         style="@style/text_view_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_c_skill"
-        android:inputType="textAutoComplete"
         android:autofillHints="C Skill Name" />
 
     <Button
-        android:id="@+id/button_save"
+        android:id="@+id/button_edit"
         style="@style/button_style"
-        android:text="@string/button_save" />
+        android:text="@string/button_edit" />
 </LinearLayout>
 </ScrollView>

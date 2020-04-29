@@ -9,14 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SacredSealSelectionActivity"></activity>
-        <activity android:name=".CSkillSelectionActivity" />
-        <activity android:name=".BSkillSelectionActivity" />
-        <activity android:name=".ASkillSelectionActivity" />
-        <activity android:name=".SpecialSelectionActivity" />
-        <activity android:name=".AssistSelectionActivity" />
-        <activity android:name=".WeaponSelectionActivity" />
-        <activity android:name=".UnitSelectionActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -29,6 +21,12 @@
         </activity>
         <activity
             android:name=".NewBuildActivity"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".ViewBuildActivity"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".EditBuildActivity"
             android:label="@string/app_name" />
     </application>
 
