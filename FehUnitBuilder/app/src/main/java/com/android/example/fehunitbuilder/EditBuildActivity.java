@@ -1,7 +1,7 @@
 /*
  * Kevin Kochanek & Evan Cruzen
  * CIS 433 Project - Feh Unit Builder
- * NewBuildActivity.java
+ * EditBuildActivity.java
  */
 
 package com.android.example.fehunitbuilder;
@@ -15,9 +15,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 /**
- * This class displays a screen where the user enters a new build.
- * The NewBuildActivity returns the entered build to the calling activity
- * (MainActivity), which then stores the new build and updates the list of
+ * This class displays a screen where the user updates an existing build.
+ * The EditBuildActivity returns the entered build to the calling activity
+ * (ViewBuildActivity), which then stores the new build and updates the list of
  * displayed builds.
  */
 public class EditBuildActivity extends AppCompatActivity {

@@ -21,9 +21,9 @@ import android.widget.Toast;
  */
 public class NewBuildActivity extends AppCompatActivity {
 
+    //Definitions
     EditText et_build_name, et_unit, et_weapon, et_assist,
     et_special, et_a_skill, et_b_skill, et_c_skill;
-
     Button btn_save;
 
     @Override
@@ -31,6 +31,7 @@ public class NewBuildActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_build);
 
+        //GUI assignments
         et_build_name = findViewById(R.id.edit_build_name);
         et_unit = findViewById(R.id.edit_unit);
         et_weapon = findViewById(R.id.edit_weapon);
@@ -41,6 +42,7 @@ public class NewBuildActivity extends AppCompatActivity {
         et_c_skill = findViewById(R.id.edit_c_skill);
         btn_save = findViewById(R.id.button_save);
 
+        //Create build object when save is clicked
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,6 +64,7 @@ public class NewBuildActivity extends AppCompatActivity {
 
                 DataBaseHelper dataBaseHelper = new DataBaseHelper(NewBuildActivity.this);
 
+                //Update old build with new one
                 boolean success = dataBaseHelper.addOne(build);
 
                 Toast.makeText(getApplicationContext(), "Success: " + success, Toast.LENGTH_SHORT).show();

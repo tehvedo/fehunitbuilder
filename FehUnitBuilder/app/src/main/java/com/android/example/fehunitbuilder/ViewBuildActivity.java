@@ -1,7 +1,7 @@
 /*
  * Kevin Kochanek & Evan Cruzen
  * CIS 433 Project - Feh Unit Builder
- * NewBuildActivity.java
+ * ViewBuildActivity.java
  */
 
 package com.android.example.fehunitbuilder;
@@ -14,13 +14,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 /**
- * This class displays a screen where the user enters a new build.
- * The NewBuildActivity returns the entered build to the calling activity
- * (MainActivity), which then stores the new build and updates the list of
- * displayed builds.
+ * This class displays a screen where the user can view a build.
  */
 public class ViewBuildActivity extends AppCompatActivity {
 
+    //Definitions
     TextView[] et_build = new TextView[8];
     Button btn_edit;
 
@@ -30,10 +28,12 @@ public class ViewBuildActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_build);
         Intent intent = getIntent();
 
+        //Grab build to view
         final int id = intent.getIntExtra("build_id", -1);
         DataBaseHelper dataBaseHelper = new DataBaseHelper(getApplicationContext());
         Build build = dataBaseHelper.getBuild(id);
 
+        //GUI assignments
         et_build[0] = findViewById(R.id.edit_build_name);
         et_build[1] = findViewById(R.id.edit_unit);
         et_build[2] = findViewById(R.id.edit_weapon);
@@ -42,13 +42,12 @@ public class ViewBuildActivity extends AppCompatActivity {
         et_build[5] = findViewById(R.id.edit_a_skill);
         et_build[6] = findViewById(R.id.edit_b_skill);
         et_build[7] = findViewById(R.id.edit_c_skill);
-
         btn_edit = findViewById(R.id.button_edit);
 
         //Save all data from build into string array
         String[] allData = build.getAll();
 
-        //When user is done, they can click the save button to update the build info
+        //Display data
         for(int i=0; i<8; i++)
             et_build[i].setText(allData[i]);
 

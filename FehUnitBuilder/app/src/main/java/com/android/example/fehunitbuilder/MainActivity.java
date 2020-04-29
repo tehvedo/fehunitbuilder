@@ -17,17 +17,20 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 /**
- * This class displays a list of builds in a RecyclerView.
- * The builds are saved in a Room database.
+ * This class displays a list of builds in a ListView.
+ * The builds are saved in a SQLite database.
  * The layout for this activity also displays a FAB that
  * allows users to start the NewBuildActivity to add new builds.
- * Users can delete a build by swiping it away, or delete all builds
+ * Users can delete a build by long pressing, or delete all builds
  * through the Options menu.
- * Whenever a new build is added, deleted, or updated, the RecyclerView
+ * Users can view a build by clicking on one, from there they have
+ * the option to update it.
+ * Whenever a new build is added, deleted, or updated, the ListView
  * showing the list of builds automatically updates.
  */
 public class MainActivity extends AppCompatActivity {
 
+    //Definitions
     FloatingActionButton fab_new_build;
     ListView lv_build_list;
     ArrayAdapter buildArrayAdapter;
@@ -38,15 +41,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //GUI assignments
         fab_new_build = findViewById(R.id.fab);
         lv_build_list = findViewById(R.id.lv_buildList);
 
+        //DataBaseHelper to interact with the DB
         dataBaseHelper = new DataBaseHelper(MainActivity.this);
 
+        //Update the list of builds to reflect current DB
         buildArrayAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, dataBaseHelper.getAllBuilds());
         lv_build_list.setAdapter(buildArrayAdapter);
 
-        //Create new build when + button is clicked
+        //Create new build activity when + button is clicked
         fab_new_build.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         lv_build_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
+                //Find which build was clicked
                 Build clickedBuild = (Build) parent.getItemAtPosition(pos);
                 Intent view_build_intent = new Intent(getApplicationContext(), ViewBuildActivity.class);
 
@@ -72,8 +79,11 @@ public class MainActivity extends AppCompatActivity {
         lv_build_list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int pos, long id) {
+                //Find which build was long clicked
                 Build clickedBuild = (Build) parent.getItemAtPosition(pos);
+                //Delete it
                 dataBaseHelper.deleteOne(clickedBuild);
+                //Update displayed list
                 buildArrayAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, dataBaseHelper.getAllBuilds());
                 lv_build_list.setAdapter(buildArrayAdapter);
                 Toast.makeText(getApplicationContext(), "Deleting build", Toast.LENGTH_SHORT).show();
@@ -86,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        //Every time the user returns to the MainActivity, update the build list
         buildArrayAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, dataBaseHelper.getAllBuilds());
         lv_build_list.setAdapter(buildArrayAdapter);
     }

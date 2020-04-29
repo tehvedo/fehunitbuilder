@@ -1,3 +1,9 @@
+/*
+ * Kevin Kochanek & Evan Cruzen
+ * CIS 433 Project - Feh Unit Builder
+ * DataBaseHelper.java
+ */
+
 package com.android.example.fehunitbuilder;
 
 import android.content.ContentValues;
@@ -10,8 +16,13 @@ import android.support.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class allows interaction with the database.
+ */
+
 public class DataBaseHelper extends SQLiteOpenHelper {
 
+    //Constants
     public static final String BUILD_TABLE = "BUILD_TABLE";
     public static final String COLUMN_ID = "ID";
     public static final String COLUMN_BUILD_NAME = "BUILD_NAME";
@@ -23,10 +34,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_BUILD_B_SKILL = "BUILD_B_SKILL";
     public static final String COLUMN_BUILD_C_SKILL = "BUILD_C_SKILL";
 
+    //Constructor
     public DataBaseHelper(@Nullable Context context) {
         super(context, "build.db", null, 1);
     }
 
+    //Occurs only when database is first created. Creates the table.
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTableStatement = "CREATE TABLE " + BUILD_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -39,9 +52,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVer, int newVer) {
-
     }
 
+    //Function to add one entry to the database given a build object.
     public boolean addOne(Build build){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -64,6 +77,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     }
 
+    //Function to delete one entry from the database given a build object.
     public boolean deleteOne(Build build){
         SQLiteDatabase db = this.getWritableDatabase();
         String queryString = "DELETE FROM " + BUILD_TABLE + " WHERE " + COLUMN_ID + " = " + build.getId();
@@ -78,6 +92,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    //Function to update a build given a build object.
     public boolean updateBuild(Build build){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -94,6 +109,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    //Function to get build information given an ID.
     public Build getBuild(int i){
         Build returnBuild = new Build();
         String queryString = "SELECT * FROM " + BUILD_TABLE + " WHERE " + COLUMN_ID + " = " + i;
@@ -114,7 +130,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                     , buildAssist, buildSpecial, buildASkill, buildBSkill, buildCSkill);
         }
         else{
-            //Don't add anything
+            //Don't do anything
         }
 
         cursor.close();
@@ -123,6 +139,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return returnBuild;
     }
 
+    //Function to get all builds from the database into a list.
     public List<Build> getAllBuilds(){
         List<Build> returnList = new ArrayList<>();
         String queryString = "SELECT * FROM " + BUILD_TABLE;

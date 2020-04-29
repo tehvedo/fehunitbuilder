@@ -6,18 +6,12 @@
 
 package com.android.example.fehunitbuilder;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Ignore;
-import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.NonNull;
-
 /**
  * Entity class that represents a unit build in the database
  */
-
 public class Build {
 
+    //Self explanatory class attributes
     private int id;
     private String name;
     private String unit;
@@ -28,6 +22,7 @@ public class Build {
     private String b_skill;
     private String c_skill;
 
+    //Constructor with all attributes
     public Build(int id, String name, String unit, String weapon, String assist, String special, String a_skill, String b_skill, String c_skill) {
         this.id = id;
         this.name = name;
@@ -40,14 +35,17 @@ public class Build {
         this.c_skill = c_skill;
     }
 
+    //Constructor with just id and name
     public Build(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
+    //Empty Constructor
     public Build() {
     }
 
+    //Stringify the object for printing
     @Override
     public String toString() {
         return "Build{" +
@@ -63,6 +61,7 @@ public class Build {
                 '}';
     }
 
+    //Getters and setters below
     public String[] getAll() {
         String[] temp = new String[8];
         temp[0] = name;
