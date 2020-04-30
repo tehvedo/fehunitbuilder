@@ -6,9 +6,10 @@
     <color name="colorAccent">#d81b60</color>
     <color name="colorBackground">#666666</color>
     <color name="colorText">#ffffff</color>
+    <color name="colorTextHint">#cfcfcf</color>
 
-    <color name="colorPrimaryLight">#64b5f6</color>
+
+    <color name="colorPrimaryLight">#00008b</color>
     <color name="colorTextPrimary">#ffffff</color>
     <color name="colorScreenBackground">#fff3e0</color>
-    <color name="colorTextHint">#E0E0E0</color>
 </resources>

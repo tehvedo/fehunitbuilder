@@ -18,7 +18,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.support.v7.widget.Toolbar;
 
 /**
  * This class displays a list of builds in a ListView.
@@ -62,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         dataBaseHelper = new DataBaseHelper(MainActivity.this);
 
         //Update the list of builds to reflect current DB
-        buildArrayAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, dataBaseHelper.getAllBuilds());
+        buildArrayAdapter = new ArrayAdapter<>(MainActivity.this, R.layout.lv_custom, dataBaseHelper.getAllBuilds());
         lv_build_list.setAdapter(buildArrayAdapter);
 
         //Create new build activity when + button is clicked
@@ -97,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 //Delete it
                 dataBaseHelper.deleteOne(clickedBuild);
                 //Update displayed list
-                buildArrayAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, dataBaseHelper.getAllBuilds());
+                buildArrayAdapter = new ArrayAdapter<>(MainActivity.this, R.layout.lv_custom, dataBaseHelper.getAllBuilds());
                 lv_build_list.setAdapter(buildArrayAdapter);
                 Toast.makeText(getApplicationContext(), "Deleting build", Toast.LENGTH_SHORT).show();
                 return true;
@@ -110,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         //Every time the user returns to the MainActivity, update the build list
-        buildArrayAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, dataBaseHelper.getAllBuilds());
+        buildArrayAdapter = new ArrayAdapter<>(MainActivity.this, R.layout.lv_custom, dataBaseHelper.getAllBuilds());
         lv_build_list.setAdapter(buildArrayAdapter);
     }
 
@@ -138,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
             dataBaseHelper.deleteAllBuilds();
 
             //Update list
-            buildArrayAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, dataBaseHelper.getAllBuilds());
+            buildArrayAdapter = new ArrayAdapter<>(MainActivity.this, R.layout.lv_custom, dataBaseHelper.getAllBuilds());
             lv_build_list.setAdapter(buildArrayAdapter);
 
             return true;

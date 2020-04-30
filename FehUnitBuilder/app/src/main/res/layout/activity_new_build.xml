@@ -11,7 +11,7 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorScreenBackground"
+    android:background="@color/colorBackground"
     android:orientation="vertical"
     android:padding="24dp">
 
@@ -20,6 +20,7 @@
         style="@style/text_view_style"
         android:hint="@string/hint_build"
         android:inputType="textAutoComplete"
+        android:textColorHint="@color/colorTextHint"
         android:autofillHints="Build Name" />
 
     <EditText
@@ -29,6 +30,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/hint_unit"
         android:inputType="textAutoComplete"
+        android:textColorHint="@color/colorTextHint"
         android:autofillHints="Unit Name" />
 
     <EditText
@@ -38,6 +40,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/hint_weapon"
         android:inputType="textAutoComplete"
+        android:textColorHint="@color/colorTextHint"
         android:autofillHints="Weapon Name" />
 
     <EditText
@@ -47,6 +50,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/hint_assist"
         android:inputType="textAutoComplete"
+        android:textColorHint="@color/colorTextHint"
         android:autofillHints="Assist Name" />
 
     <EditText
@@ -56,6 +60,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/hint_special"
         android:inputType="textAutoComplete"
+        android:textColorHint="@color/colorTextHint"
         android:autofillHints="Special Name" />
 
     <EditText
@@ -65,6 +70,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/hint_a_skill"
         android:inputType="textAutoComplete"
+        android:textColorHint="@color/colorTextHint"
         android:autofillHints="A Skill Name" />
 
     <EditText
@@ -74,6 +80,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/hint_b_skill"
         android:inputType="textAutoComplete"
+        android:textColorHint="@color/colorTextHint"
         android:autofillHints="B Skill Name" />
 
     <EditText
@@ -83,6 +90,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/hint_c_skill"
         android:inputType="textAutoComplete"
+        android:textColorHint="@color/colorTextHint"
         android:autofillHints="C Skill Name" />
 
     <Button
