@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,24 +34,29 @@ import android.support.v7.widget.Toolbar;
  */
 public class MainActivity extends AppCompatActivity {
 
+    public static boolean isPro = false;
+
     //Definitions
     FloatingActionButton fab_new_build;
     ListView lv_build_list;
     ArrayAdapter buildArrayAdapter;
     DataBaseHelper dataBaseHelper;
-    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+//        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+//            setTheme(R.style.darkTheme);
+//        }
+//        else {
+//            setTheme(R.style.AppTheme);
+//        }
+
         //GUI assignments
         fab_new_build = findViewById(R.id.fab);
         lv_build_list = findViewById(R.id.lv_buildList);
-        toolbar = findViewById(R.id.toolbar);
-
-        setSupportActionBar(toolbar);
 
         //DataBaseHelper to interact with the DB
         dataBaseHelper = new DataBaseHelper(MainActivity.this);
@@ -137,7 +143,39 @@ public class MainActivity extends AppCompatActivity {
 
             return true;
         }
+        else if (id == R.id.pro_upgrade){
+            if(isPro){
+                isPro = false;
+            }
+            else{
+                isPro = true;
+            }
+            Toast.makeText(this, "Pro: " + isPro, Toast.LENGTH_LONG).show();
+        }
+        else if (id == R.id.dark_mode_toggle){
+            if(isPro){
+                //toggle dark mode
+                if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    restartApp();
+                }
+                else{
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    restartApp();
+                }
+            }
+            else{
+                Toast.makeText(this, "Pro version is required for dark mode", Toast.LENGTH_LONG).show();
+            }
+        }
+
         return super.onOptionsItemSelected(item);
+    }
+
+    public void restartApp(){
+        Intent i = new Intent (getApplicationContext(), MainActivity.class);
+        startActivity(i);
+        finish();
     }
 
 }

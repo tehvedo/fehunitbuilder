@@ -105,6 +105,23 @@ public class NewBuildActivity extends AppCompatActivity {
 
             return true;
         }
+        else if (id == R.id.pro_upgrade){
+            if(MainActivity.isPro){
+                MainActivity.isPro = false;
+            }
+            else{
+                MainActivity.isPro = true;
+            }
+            Toast.makeText(this, "Pro: " + MainActivity.isPro, Toast.LENGTH_LONG).show();
+        }
+        else if (id == R.id.dark_mode_toggle){
+            if(MainActivity.isPro){
+                //toggle dark mode
+            }
+            else{
+                Toast.makeText(this, "Pro version is required for dark mode", Toast.LENGTH_LONG).show();
+            }
+        }
         return super.onOptionsItemSelected(item);
     }
 }
