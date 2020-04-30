@@ -156,11 +156,11 @@ public class MainActivity extends AppCompatActivity {
                 //toggle dark mode
                 if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    restartApp();
+                    MainActivity.this.recreate();
                 }
                 else{
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    restartApp();
+                    MainActivity.this.recreate();
                 }
             }
             else{
@@ -169,12 +169,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void restartApp(){
-        Intent i = new Intent (getApplicationContext(), MainActivity.class);
-        startActivity(i);
-        finish();
     }
 
 }

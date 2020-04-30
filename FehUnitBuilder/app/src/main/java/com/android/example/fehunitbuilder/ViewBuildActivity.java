@@ -9,6 +9,7 @@ package com.android.example.fehunitbuilder;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -132,6 +133,14 @@ public class ViewBuildActivity extends AppCompatActivity {
         else if (id == R.id.dark_mode_toggle){
             if(MainActivity.isPro){
                 //toggle dark mode
+                if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    ViewBuildActivity.this.recreate();
+                }
+                else{
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    ViewBuildActivity.this.recreate();
+                }
             }
             else{
                 Toast.makeText(this, "Pro version is required for dark mode", Toast.LENGTH_LONG).show();
