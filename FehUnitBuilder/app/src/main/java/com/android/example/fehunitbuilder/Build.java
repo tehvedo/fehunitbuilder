@@ -46,19 +46,24 @@ public class Build {
     }
 
     //Stringify the object for printing
+//    @Override
+//    public String toString() {
+//        return "Build{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", unit='" + unit + '\'' +
+//                ", weapon='" + weapon + '\'' +
+//                ", assist='" + assist + '\'' +
+//                ", special='" + special + '\'' +
+//                ", a_skill='" + a_skill + '\'' +
+//                ", b_skill='" + b_skill + '\'' +
+//                ", c_skill='" + c_skill + '\'' +
+//                '}';
+//    }
+
     @Override
     public String toString() {
-        return "Build{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", unit='" + unit + '\'' +
-                ", weapon='" + weapon + '\'' +
-                ", assist='" + assist + '\'' +
-                ", special='" + special + '\'' +
-                ", a_skill='" + a_skill + '\'' +
-                ", b_skill='" + b_skill + '\'' +
-                ", c_skill='" + c_skill + '\'' +
-                '}';
+        return "Build ID: " +id + "\nName: " + name;
     }
 
     //Getters and setters below

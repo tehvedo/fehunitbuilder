@@ -26,6 +26,8 @@ public class ViewBuildActivity extends AppCompatActivity {
     TextView[] et_build = new TextView[8];
     Button btn_edit;
 
+    public static int last_viewed_id;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +38,14 @@ public class ViewBuildActivity extends AppCompatActivity {
 
         //Grab build to view
         final int id = intent.getIntExtra("build_id", -1);
+        if(id != -1){
+            last_viewed_id = id;
+        }
+
+        Toast.makeText(this, "id: " + last_viewed_id, Toast.LENGTH_LONG).show();
+
         DataBaseHelper dataBaseHelper = new DataBaseHelper(getApplicationContext());
-        Build build = dataBaseHelper.getBuild(id);
+        Build build = dataBaseHelper.getBuild(last_viewed_id);
 
         //GUI assignments
         et_build[0] = findViewById(R.id.edit_build_name);
@@ -54,15 +62,24 @@ public class ViewBuildActivity extends AppCompatActivity {
         String[] allData = build.getAll();
 
         //Display data
-        for(int i=0; i<8; i++)
-            et_build[i].setText(allData[i]);
+//        for(int i=0; i<8; i++)
+//            et_build[i].setText(allData[i]);
+
+        et_build[0].setText("Build Name: " + allData[0]);
+        et_build[1].setText("Unit: " + allData[1]);
+        et_build[2].setText("Weapon: " + allData[2]);
+        et_build[3].setText("Assist: " + allData[3]);
+        et_build[4].setText("Special: " + allData[4]);
+        et_build[5].setText("A Skill: " + allData[5]);
+        et_build[6].setText("B Skill: " + allData[6]);
+        et_build[7].setText("C Skill: " + allData[7]);
 
         //When edit button is clicked, pass build id to EditBuildActivity
         btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent edit_build_intent = new Intent(getApplicationContext(), EditBuildActivity.class);
-                edit_build_intent.putExtra("build_id", id);
+                edit_build_intent.putExtra("build_id", last_viewed_id);
                 startActivity(edit_build_intent);
 
             }
@@ -74,9 +91,16 @@ public class ViewBuildActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Intent intent = getIntent();
+
         final int id = intent.getIntExtra("build_id", -1);
+        if(id != -1){
+            last_viewed_id = id;
+        }
+
+        Toast.makeText(this, "id: " + last_viewed_id, Toast.LENGTH_LONG).show();
+
         DataBaseHelper dataBaseHelper = new DataBaseHelper(getApplicationContext());
-        Build build = dataBaseHelper.getBuild(id);
+        Build build = dataBaseHelper.getBuild(last_viewed_id);
 
         et_build[0] = findViewById(R.id.edit_build_name);
         et_build[1] = findViewById(R.id.edit_unit);
@@ -91,8 +115,18 @@ public class ViewBuildActivity extends AppCompatActivity {
 
         String[] allData = build.getAll();
 
-        for(int i=0; i<8; i++)
-            et_build[i].setText(allData[i]);
+//        for(int i=0; i<8; i++)
+//            et_build[i].setText("yeeter " + allData[i]);
+
+        et_build[0].setText("Build Name: " + allData[0]);
+        et_build[1].setText("Unit: " + allData[1]);
+        et_build[2].setText("Weapon: " + allData[2]);
+        et_build[3].setText("Assist: " + allData[3]);
+        et_build[4].setText("Special: " + allData[4]);
+        et_build[5].setText("A Skill: " + allData[5]);
+        et_build[6].setText("B Skill: " + allData[6]);
+        et_build[7].setText("C Skill: " + allData[7]);
+
     }
 
     @Override

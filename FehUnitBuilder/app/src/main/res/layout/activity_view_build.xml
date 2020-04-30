@@ -2,83 +2,128 @@
 
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scroll"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorBackground">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/colorBackground"
-    android:orientation="vertical"
-    android:padding="24dp">
+<!--<LinearLayout-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:background="@color/colorBackground"-->
+<!--    android:orientation="vertical"-->
+<!--    android:padding="24dp">-->
 
-    <TextView
-        android:id="@+id/edit_build_name"
-        style="@style/text_view_style"
-        android:hint="@string/hint_build"
-        android:autofillHints="Build Name" />
-
-    <TextView
-        android:id="@+id/edit_unit"
-        style="@style/text_view_style"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/hint_unit"
-        android:autofillHints="Unit Name" />
+        android:background="@color/colorBackground"
+        android:orientation="vertical"
+        android:padding="24dp">
 
-    <TextView
-        android:id="@+id/edit_weapon"
-        style="@style/text_view_style"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/hint_weapon"
-        android:autofillHints="Weapon Name" />
+        <TextView
+            android:id="@+id/edit_build_name"
+            style="@style/text_view_style"
+            android:autofillHints="Build Name"
+            android:textColorHint="@color/colorText"
+            app:layout_constraintBottom_toTopOf="@id/edit_unit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/edit_assist"
-        style="@style/text_view_style"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/hint_assist"
-        android:autofillHints="Assist Name" />
+        <TextView
+            android:id="@+id/edit_unit"
+            style="@style/text_view_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="Unit Name"
+            android:textColorHint="@color/colorText"
+            app:layout_constraintBottom_toTopOf="@id/edit_weapon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_build_name" />
 
-    <TextView
-        android:id="@+id/edit_special"
-        style="@style/text_view_style"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/hint_special"
-        android:autofillHints="Special Name" />
+        <TextView
+            android:id="@+id/edit_weapon"
+            style="@style/text_view_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="Weapon Name"
+            android:textColorHint="@color/colorText"
+            app:layout_constraintBottom_toTopOf="@id/edit_assist"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_unit" />
 
-    <TextView
-        android:id="@+id/edit_a_skill"
-        style="@style/text_view_style"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/hint_a_skill"
-        android:autofillHints="A Skill Name" />
+        <TextView
+            android:id="@+id/edit_assist"
+            style="@style/text_view_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="Assist Name"
+            android:textColorHint="@color/colorText"
+            app:layout_constraintBottom_toTopOf="@id/edit_special"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_weapon" />
 
-    <TextView
-        android:id="@+id/edit_b_skill"
-        style="@style/text_view_style"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/hint_b_skill"
-        android:autofillHints="B Skill Name" />
+        <TextView
+            android:id="@+id/edit_special"
+            style="@style/text_view_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="Special Name"
+            android:textColorHint="@color/colorText"
+            app:layout_constraintBottom_toTopOf="@id/edit_a_skill"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_assist" />
 
-    <TextView
-        android:id="@+id/edit_c_skill"
-        style="@style/text_view_style"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/hint_c_skill"
-        android:autofillHints="C Skill Name" />
+        <TextView
+            android:id="@+id/edit_a_skill"
+            style="@style/text_view_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="A Skill Name"
+            android:textColorHint="@color/colorText"
+            app:layout_constraintBottom_toTopOf="@id/edit_b_skill"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_special" />
 
-    <Button
-        android:id="@+id/button_edit"
-        style="@style/button_style"
-        android:text="@string/button_edit" />
-</LinearLayout>
+        <TextView
+            android:id="@+id/edit_b_skill"
+            style="@style/text_view_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="B Skill Name"
+            android:textColorHint="@color/colorText"
+            app:layout_constraintBottom_toTopOf="@id/edit_c_skill"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_a_skill" />
+
+        <TextView
+            android:id="@+id/edit_c_skill"
+            style="@style/text_view_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="C Skill Name"
+            android:textColorHint="@color/colorText"
+            app:layout_constraintBottom_toTopOf="@id/button_edit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_b_skill" />
+
+        <Button
+            android:id="@+id/button_edit"
+            style="@style/button_style"
+            android:text="@string/button_edit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_c_skill" />
+</android.support.constraint.ConstraintLayout>
 </ScrollView>
