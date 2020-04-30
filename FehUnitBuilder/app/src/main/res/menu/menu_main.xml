@@ -5,16 +5,16 @@
     <item
         android:id="@+id/clear_data"
         android:orderInCategory="100"
-        android:title="@string/clear_all_data"
+        android:title="Delete All Builds"
         app:showAsAction="never" />
     <item
         android:id="@+id/dark_mode_toggle"
         android:orderInCategory="99"
-        android:title="Toggle Dark Mode"
+        android:title="Toggle Dark/Light Mode"
         app:showAsAction="never" />
     <item
         android:id="@+id/pro_upgrade"
         android:orderInCategory="98"
-        android:title="Upgrade to Pro"
+        android:title="Toggle Pro/Basic"
         app:showAsAction="never" />
 </menu>

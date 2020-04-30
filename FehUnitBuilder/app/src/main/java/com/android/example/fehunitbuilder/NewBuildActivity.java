@@ -62,8 +62,6 @@ public class NewBuildActivity extends AppCompatActivity {
                             et_weapon.getText().toString(), et_assist.getText().toString(),
                             et_special.getText().toString(), et_a_skill.getText().toString(),
                             et_b_skill.getText().toString(), et_c_skill.getText().toString());
-
-                    Toast.makeText(getApplicationContext(), build.toString(), Toast.LENGTH_SHORT).show();
                 }
                 catch(Exception e){
                     Toast.makeText(getApplicationContext(), "Error creating build.", Toast.LENGTH_SHORT).show();
@@ -71,10 +69,14 @@ public class NewBuildActivity extends AppCompatActivity {
                 }
 
                 //Update old build with new one
-                boolean success = dataBaseHelper.addOne(build);
-
-                Toast.makeText(getApplicationContext(), "Success: " + success, Toast.LENGTH_SHORT).show();
-                finish();
+                if(MainActivity.isPro) {
+                    boolean success = dataBaseHelper.addOne(build);
+                    Toast.makeText(getApplicationContext(), "Success: " + success, Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Pro version is required to save builds", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -99,7 +101,7 @@ public class NewBuildActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.clear_data) {
             // Add a toast just for confirmation
-            Toast.makeText(this, R.string.clear_data_toast_text, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Deleting all builds", Toast.LENGTH_LONG).show();
 
             // Delete the existing data.
             dataBaseHelper.deleteAllBuilds();

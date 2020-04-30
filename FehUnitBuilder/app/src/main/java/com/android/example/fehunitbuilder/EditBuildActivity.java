@@ -74,8 +74,6 @@ public class EditBuildActivity extends AppCompatActivity {
                             et_build[2].getText().toString(), et_build[3].getText().toString(),
                             et_build[4].getText().toString(), et_build[5].getText().toString(),
                             et_build[6].getText().toString(), et_build[7].getText().toString());
-
-                    Toast.makeText(getApplicationContext(), build.toString(), Toast.LENGTH_SHORT).show();
                 }
                 catch(Exception e){
                     Toast.makeText(getApplicationContext(), "Error creating build.", Toast.LENGTH_SHORT).show();
@@ -86,10 +84,14 @@ public class EditBuildActivity extends AppCompatActivity {
                 DataBaseHelper dataBaseHelper = new DataBaseHelper(getApplicationContext());
 
                 //Update build
-                boolean success = dataBaseHelper.updateBuild(build);
-
-                Toast.makeText(getApplicationContext(), "Success: " + success, Toast.LENGTH_SHORT).show();
-                finish();
+                if(MainActivity.isPro) {
+                    boolean success = dataBaseHelper.updateBuild(build);
+                    Toast.makeText(getApplicationContext(), "Success: " + success, Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Pro version is required to edit builds", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -114,7 +116,7 @@ public class EditBuildActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.clear_data) {
             // Add a toast just for confirmation
-            Toast.makeText(this, R.string.clear_data_toast_text, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Deleting all builds", Toast.LENGTH_LONG).show();
 
             // Delete the existing data.
             DataBaseHelper dataBaseHelper = new DataBaseHelper(EditBuildActivity.this);

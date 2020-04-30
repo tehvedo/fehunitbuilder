@@ -42,7 +42,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     //Occurs only when database is first created. Creates the table.
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTableStatement = "CREATE TABLE " + BUILD_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+        String createTableStatement = "CREATE TABLE " + BUILD_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY, " +
                 COLUMN_BUILD_NAME + " TEXT, " + COLUMN_BUILD_UNIT + " TEXT, " + COLUMN_BUILD_WEAPON + " TEXT, " + COLUMN_BUILD_ASSIST + " TEXT, " +
                 COLUMN_BUILD_SPECIAL + " TEXT, " + COLUMN_BUILD_A_SKILL + " TEXT, " + COLUMN_BUILD_B_SKILL + " TEXT, " + COLUMN_BUILD_C_SKILL + " TEXT)";
 

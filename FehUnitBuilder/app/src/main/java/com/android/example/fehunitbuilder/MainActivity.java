@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.clear_data) {
             // Add a toast just for confirmation
-            Toast.makeText(this, R.string.clear_data_toast_text, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Deleting all builds", Toast.LENGTH_LONG).show();
 
             // Delete the existing data.
             dataBaseHelper.deleteAllBuilds();
