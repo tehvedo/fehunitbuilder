@@ -9,6 +9,8 @@ package com.android.example.fehunitbuilder;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,6 +32,8 @@ public class EditBuildActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_build);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Fill fields with build info to be edited
         et_build[0] = findViewById(R.id.edit_build_name);
@@ -89,5 +93,34 @@ public class EditBuildActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    // The options menu has a single item "Clear all data now"
+    // that deletes all the entries in the database.
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.clear_data) {
+            // Add a toast just for confirmation
+            Toast.makeText(this, R.string.clear_data_toast_text, Toast.LENGTH_LONG).show();
+
+            // Delete the existing data.
+            DataBaseHelper dataBaseHelper = new DataBaseHelper(EditBuildActivity.this);
+            dataBaseHelper.deleteAllBuilds();
+
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

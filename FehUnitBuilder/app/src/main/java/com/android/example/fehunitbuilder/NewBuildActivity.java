@@ -8,10 +8,14 @@ package com.android.example.fehunitbuilder;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 /**
  * This class displays a screen where the user enters a new build.
@@ -26,10 +30,14 @@ public class NewBuildActivity extends AppCompatActivity {
     et_special, et_a_skill, et_b_skill, et_c_skill;
     Button btn_save;
 
+    DataBaseHelper dataBaseHelper = new DataBaseHelper(NewBuildActivity.this);
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_build);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //GUI assignments
         et_build_name = findViewById(R.id.edit_build_name);
@@ -61,9 +69,6 @@ public class NewBuildActivity extends AppCompatActivity {
                     build = new Build(-1, "Error", "", "", "", "", "", "", "");
                 }
 
-
-                DataBaseHelper dataBaseHelper = new DataBaseHelper(NewBuildActivity.this);
-
                 //Update old build with new one
                 boolean success = dataBaseHelper.addOne(build);
 
@@ -73,5 +78,33 @@ public class NewBuildActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    // The options menu has a single item "Clear all data now"
+    // that deletes all the entries in the database.
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.clear_data) {
+            // Add a toast just for confirmation
+            Toast.makeText(this, R.string.clear_data_toast_text, Toast.LENGTH_LONG).show();
+
+            // Delete the existing data.
+            dataBaseHelper.deleteAllBuilds();
+
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
