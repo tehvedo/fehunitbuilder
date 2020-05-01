@@ -6,7 +6,9 @@
 
 package com.android.example.fehunitbuilder;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -45,6 +47,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Restore settings on app restart
+        SharedPreferences sharedPref = getSharedPreferences("my_shared_prefs", MODE_PRIVATE);
+        isPro = sharedPref.getBoolean("isPro_key", false);
+        Boolean start_night_mode;
+        start_night_mode = sharedPref.getBoolean("start_night_mode_key", false);
+        if(start_night_mode){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+        else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+
 
 //        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
 //            setTheme(R.style.darkTheme);
@@ -128,6 +143,9 @@ public class MainActivity extends AppCompatActivity {
         // Handle action bar item clicks here
         int id = item.getItemId();
 
+        SharedPreferences sharedPref = getSharedPreferences("my_shared_prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.clear_data) {
             // Add a toast just for confirmation
@@ -145,9 +163,13 @@ public class MainActivity extends AppCompatActivity {
         else if (id == R.id.pro_upgrade){
             if(isPro){
                 isPro = false;
+                editor.putBoolean("isPro_key", false);
+                editor.commit();
             }
             else{
                 isPro = true;
+                editor.putBoolean("isPro_key", true);
+                editor.commit();
             }
             Toast.makeText(this, "Pro: " + isPro, Toast.LENGTH_LONG).show();
         }
@@ -156,10 +178,14 @@ public class MainActivity extends AppCompatActivity {
                 //toggle dark mode
                 if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    editor.putBoolean("start_night_mode_key", false);
+                    editor.commit();
                     MainActivity.this.recreate();
                 }
                 else{
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    editor.putBoolean("start_night_mode_key", true);
+                    editor.commit();
                     MainActivity.this.recreate();
                 }
             }

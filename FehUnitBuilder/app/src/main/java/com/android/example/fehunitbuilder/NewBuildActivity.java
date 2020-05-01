@@ -6,6 +6,8 @@
 
 package com.android.example.fehunitbuilder;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
@@ -98,6 +100,9 @@ public class NewBuildActivity extends AppCompatActivity {
         // Handle action bar item clicks here
         int id = item.getItemId();
 
+        SharedPreferences sharedPref = getSharedPreferences("my_shared_prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.clear_data) {
             // Add a toast just for confirmation
@@ -111,9 +116,13 @@ public class NewBuildActivity extends AppCompatActivity {
         else if (id == R.id.pro_upgrade){
             if(MainActivity.isPro){
                 MainActivity.isPro = false;
+                editor.putBoolean("isPro_key", false);
+                editor.commit();
             }
             else{
                 MainActivity.isPro = true;
+                editor.putBoolean("isPro_key", true);
+                editor.commit();
             }
             Toast.makeText(this, "Pro: " + MainActivity.isPro, Toast.LENGTH_LONG).show();
         }
@@ -122,10 +131,14 @@ public class NewBuildActivity extends AppCompatActivity {
                 //toggle dark mode
                 if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    editor.putBoolean("start_night_mode_key", false);
+                    editor.commit();
                     NewBuildActivity.this.recreate();
                 }
                 else{
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    editor.putBoolean("start_night_mode_key", true);
+                    editor.commit();
                     NewBuildActivity.this.recreate();
                 }
             }
