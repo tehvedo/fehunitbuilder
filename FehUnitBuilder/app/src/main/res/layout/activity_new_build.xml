@@ -63,32 +63,35 @@
         android:textColorHint="@color/colorTextHint"
         android:autofillHints="Special Name" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/edit_a_skill"
         style="@style/text_view_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_a_skill"
+        android:completionThreshold="1"
         android:inputType="textAutoComplete"
         android:textColorHint="@color/colorTextHint"
         android:autofillHints="A Skill Name" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/edit_b_skill"
         style="@style/text_view_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_b_skill"
+        android:completionThreshold="1"
         android:inputType="textAutoComplete"
         android:textColorHint="@color/colorTextHint"
         android:autofillHints="B Skill Name" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/edit_c_skill"
         style="@style/text_view_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_c_skill"
+        android:completionThreshold="1"
         android:inputType="textAutoComplete"
         android:textColorHint="@color/colorTextHint"
         android:autofillHints="C Skill Name" />

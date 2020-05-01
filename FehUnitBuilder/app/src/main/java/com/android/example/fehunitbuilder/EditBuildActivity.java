@@ -13,9 +13,17 @@ import android.support.v7.app.AppCompatDelegate;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import org.json.JSONException;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * This class displays a screen where the user updates an existing build.
@@ -25,7 +33,8 @@ import android.widget.Toast;
  */
 public class EditBuildActivity extends AppCompatActivity {
 
-    EditText[] et_build = new EditText[8];
+    EditText[] et_build = new EditText[5];
+    AutoCompleteTextView[] editText = new AutoCompleteTextView[3];
 
     Button btn_save;
 
@@ -34,7 +43,7 @@ public class EditBuildActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_build);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         //Fill fields with build info to be edited
         et_build[0] = findViewById(R.id.edit_build_name);
@@ -42,10 +51,11 @@ public class EditBuildActivity extends AppCompatActivity {
         et_build[2] = findViewById(R.id.edit_weapon);
         et_build[3] = findViewById(R.id.edit_assist);
         et_build[4] = findViewById(R.id.edit_special);
-        et_build[5] = findViewById(R.id.edit_a_skill);
-        et_build[6] = findViewById(R.id.edit_b_skill);
-        et_build[7] = findViewById(R.id.edit_c_skill);
         btn_save = findViewById(R.id.button_save);
+
+        editText[0] = findViewById(R.id.edit_a_skill);
+        editText[1] = findViewById(R.id.edit_b_skill);
+        editText[2] = findViewById(R.id.edit_c_skill);
 
         DataBaseHelper dataBaseHelper = new DataBaseHelper(getApplicationContext());
         Intent intent = getIntent();
@@ -58,8 +68,25 @@ public class EditBuildActivity extends AppCompatActivity {
         String[] allData = rcvdBuild.getAll();
 
         //Set starting text to string array build text
-        for(int i=0; i<8; i++)
+        for(int i=0; i<et_build.length; i++)
             et_build[i].setText(allData[i]);
+
+        for(int i=0; i<editText.length; i++)
+            editText[i].setText(allData[i+5]);
+
+        //Get array of skills for user to pick from
+        String[] skills = new String[0];
+        try {
+            skills = JSONGetter.getSkills(this);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        //Set autocomplete suggestions to stuff from array
+        AutoCompleteTextView editText = findViewById(R.id.edit_a_skill);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                R.layout.custom_list_item, R.id.text_view_list_item, skills);
+        editText.setAdapter(adapter);
 
         //User makes changes...
 
@@ -94,8 +121,6 @@ public class EditBuildActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 
     @Override
@@ -125,12 +150,7 @@ public class EditBuildActivity extends AppCompatActivity {
             return true;
         }
         else if (id == R.id.pro_upgrade){
-            if(MainActivity.isPro){
-                MainActivity.isPro = false;
-            }
-            else{
-                MainActivity.isPro = true;
-            }
+            MainActivity.isPro = !MainActivity.isPro;
             Toast.makeText(this, "Pro: " + MainActivity.isPro, Toast.LENGTH_LONG).show();
         }
         else if (id == R.id.dark_mode_toggle){
