@@ -23,7 +23,8 @@ public class Build {
     private String c_skill;
 
     //Constructor with all attributes
-    public Build(int id, String name, String unit, String weapon, String assist, String special, String a_skill, String b_skill, String c_skill) {
+    public Build(int id, String name, String unit, String weapon, String assist,
+                 String special, String a_skill, String b_skill, String c_skill) {
         this.id = id;
         this.name = name;
         this.unit = unit;

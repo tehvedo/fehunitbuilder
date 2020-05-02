@@ -11,9 +11,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -67,9 +70,15 @@ public class EditBuildActivity extends AppCompatActivity {
         //Save all data from build into string array
         String[] allData = rcvdBuild.getAll();
 
+        //Variable used to track whether an AutoCompleteTextView has given valid data
+        final String[] var = new String[7];
+
         //Set starting text to string array build text
+        buildText.setText(allData[0]);
+
         for(int i=0; i<editText.length; i++) {
-            editText[i].setText(allData[i]);
+            editText[i].setText(allData[i+1]);
+            var[i] = allData[i+1];
         }
 
         buildText = findViewById(R.id.edit_build_name);
@@ -102,29 +111,166 @@ public class EditBuildActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        
+
         //Set autocomplete suggestions to stuff from array
-        ArrayAdapter<String> adapterArray0 = new ArrayAdapter<>(this,
+        final ArrayAdapter<String> adapterArray0 = new ArrayAdapter<>(this,
                 R.layout.custom_list_item, R.id.text_view_list_item, units);
         editText[0].setAdapter(adapterArray0);
-        ArrayAdapter<String> adapterArray1  = new ArrayAdapter<>(this,
+        final ArrayAdapter<String> adapterArray1  = new ArrayAdapter<>(this,
                 R.layout.custom_list_item, R.id.text_view_list_item, weapons);
         editText[1].setAdapter(adapterArray1);
-        ArrayAdapter<String> adapterArray2  = new ArrayAdapter<>(this,
+        final ArrayAdapter<String> adapterArray2  = new ArrayAdapter<>(this,
                 R.layout.custom_list_item, R.id.text_view_list_item, assists);
         editText[2].setAdapter(adapterArray2);
-        ArrayAdapter<String> adapterArray3  = new ArrayAdapter<>(this,
+        final ArrayAdapter<String> adapterArray3  = new ArrayAdapter<>(this,
                 R.layout.custom_list_item, R.id.text_view_list_item, specials);
         editText[3].setAdapter(adapterArray3);
-        ArrayAdapter<String> adapterArray4  = new ArrayAdapter<>(this,
+        final ArrayAdapter<String> adapterArray4  = new ArrayAdapter<>(this,
                 R.layout.custom_list_item, R.id.text_view_list_item, skillsA);
         editText[4].setAdapter(adapterArray4);
-        ArrayAdapter<String> adapterArray5  = new ArrayAdapter<>(this,
+        final ArrayAdapter<String> adapterArray5  = new ArrayAdapter<>(this,
                 R.layout.custom_list_item, R.id.text_view_list_item, skillsB);
         editText[5].setAdapter(adapterArray5);
-        ArrayAdapter<String> adapterArray6  = new ArrayAdapter<>(this,
+        final ArrayAdapter<String> adapterArray6  = new ArrayAdapter<>(this,
                 R.layout.custom_list_item, R.id.text_view_list_item, skillsC);
         editText[6].setAdapter(adapterArray6);
+
+        // **** Start of AutoCompleteTextView code ****
+
+        editText[0].setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                var[0] = adapterArray0.getItem(position);
+            }
+        });
+        editText[0].addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                var[0] = "";
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        editText[1].setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                var[1] = adapterArray1.getItem(position);
+            }
+        });
+        editText[1].addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                var[1] = "";
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        editText[2].setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                var[2] = adapterArray2.getItem(position);
+            }
+        });
+        editText[2].addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                var[2] = "";
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        editText[3].setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                var[3] = adapterArray3.getItem(position);
+            }
+        });
+        editText[3].addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                var[3] = "";
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        editText[4].setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                var[4] = adapterArray4.getItem(position);
+            }
+        });
+        editText[4].addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                var[4] = "";
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        editText[5].setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                var[5] = adapterArray5.getItem(position);
+            }
+        });
+        editText[5].addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                var[5] = "";
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        editText[6].setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                var[6] = adapterArray6.getItem(position);
+            }
+        });
+        editText[6].addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                var[6] = "";
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        // **** End of AutoCompleteTextView code ****
 
         //User makes changes...
 
@@ -135,10 +281,8 @@ public class EditBuildActivity extends AppCompatActivity {
                 //save the build to the database
                 Build build;
                 try{
-                    build = new Build(id, buildText.getText().toString(), editText[0].getText().toString(), editText[1].getText().toString(),
-                            editText[2].getText().toString(), editText[3].getText().toString(),
-                            editText[4].getText().toString(), editText[5].getText().toString(),
-                            editText[6].getText().toString());
+                    build = new Build(id, buildText.getText().toString(), var[0], var[1],
+                            var[2], var[3], var[4], var[5], var[6]);
                 }
                 catch(Exception e){
                     Toast.makeText(getApplicationContext(), "Error creating build.", Toast.LENGTH_SHORT).show();
