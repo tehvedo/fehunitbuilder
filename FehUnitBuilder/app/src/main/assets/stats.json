@@ -52442,7 +52442,7 @@
       }
     }
   ],
-  "skills": [
+  "weapons": [
     {
       "name": "Absorb",
       "effect": "Restores HP = 50% of damage dealt.",
@@ -73754,7 +73754,9 @@
       "range": 2,
       "might": 14,
       "type": "weapon"
-    },
+    }
+  ],
+  "assists": [
     {
       "name": "Ardent Sacrifice",
       "effect": "Restores 10 HP to target ally. Unit loses 10 HP but cannot go below 1.",
@@ -74948,7 +74950,9 @@
       "range": 1,
       "might": null,
       "type": "assist"
-    },
+    }
+  ],
+  "specials": [
     {
       "name": "Aegis",
       "effect": "If foe's Range = 2, reduces damage from that foe's attack by 50%.",
@@ -76714,7 +76718,9 @@
       "range": null,
       "might": null,
       "type": "special"
-    },
+    }
+  ],
+  "passivea": [
     {
       "name": "Armored Blow 1",
       "effect": "If unit initiates combat, grants Def+2 during combat.",
@@ -83748,7 +83754,9 @@
       "range": null,
       "might": null,
       "type": "passivea"
-    },
+    }
+  ],
+  "passiveb": [
     {
       "name": "Aerobatics 1",
       "effect": "If unit's HP = 100%, unit can move to a space adjacent to any infantry, armored, or cavalry ally within 2 spaces.",
@@ -90540,7 +90548,9 @@
       "range": null,
       "might": null,
       "type": "passiveb"
-    },
+    }
+  ],
+  "passivec": [
     {
       "name": "Armor March 1",
       "effect": "At start of turn, if unit's HP = 100% and unit is adjacent to an armored ally, unit and adjacent armored allies can move 1 extra space. (That turn only. Does not stack.)",
@@ -97518,7 +97528,9 @@
       "range": null,
       "might": null,
       "type": "passivec"
-    },
+    }
+  ],
+  "sacredseals": [
     {
       "name": "Armored Boots",
       "effect": "At start of turn, if unit's HP = 100%, unit can move 1 extra space. (That turn only. Does not stack.)",

@@ -6,7 +6,6 @@
 
 package com.android.example.fehunitbuilder;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,8 +22,6 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Objects;
 
 /**
@@ -35,8 +32,8 @@ import java.util.Objects;
  */
 public class EditBuildActivity extends AppCompatActivity {
 
-    EditText[] et_build = new EditText[5];
-    AutoCompleteTextView[] editText = new AutoCompleteTextView[3];
+    AutoCompleteTextView[] editText = new AutoCompleteTextView[7];
+    EditText buildText;
 
     Button btn_save;
 
@@ -48,16 +45,17 @@ public class EditBuildActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         //Fill fields with build info to be edited
-        et_build[0] = findViewById(R.id.edit_build_name);
-        et_build[1] = findViewById(R.id.edit_unit);
-        et_build[2] = findViewById(R.id.edit_weapon);
-        et_build[3] = findViewById(R.id.edit_assist);
-        et_build[4] = findViewById(R.id.edit_special);
-        btn_save = findViewById(R.id.button_save);
+        buildText = findViewById(R.id.edit_build_name);
 
-        editText[0] = findViewById(R.id.edit_a_skill);
-        editText[1] = findViewById(R.id.edit_b_skill);
-        editText[2] = findViewById(R.id.edit_c_skill);
+        editText[0] = findViewById(R.id.edit_unit);
+        editText[1] = findViewById(R.id.edit_weapon);
+        editText[2] = findViewById(R.id.edit_assist);
+        editText[3] = findViewById(R.id.edit_special);
+        editText[4] = findViewById(R.id.edit_a_skill);
+        editText[5] = findViewById(R.id.edit_b_skill);
+        editText[6] = findViewById(R.id.edit_c_skill);
+
+        btn_save = findViewById(R.id.button_save);
 
         DataBaseHelper dataBaseHelper = new DataBaseHelper(getApplicationContext());
         Intent intent = getIntent();
@@ -70,25 +68,63 @@ public class EditBuildActivity extends AppCompatActivity {
         String[] allData = rcvdBuild.getAll();
 
         //Set starting text to string array build text
-        for(int i=0; i<et_build.length; i++)
-            et_build[i].setText(allData[i]);
+        for(int i=0; i<editText.length; i++) {
+            editText[i].setText(allData[i]);
+        }
 
-        for(int i=0; i<editText.length; i++)
-            editText[i].setText(allData[i+5]);
+        buildText = findViewById(R.id.edit_build_name);
+        editText[0] = findViewById(R.id.edit_unit);
+        editText[1] = findViewById(R.id.edit_weapon);
+        editText[2] = findViewById(R.id.edit_assist);
+        editText[3] = findViewById(R.id.edit_special);
+        editText[4] = findViewById(R.id.edit_a_skill);
+        editText[5] = findViewById(R.id.edit_b_skill);
+        editText[6] = findViewById(R.id.edit_c_skill);
 
         //Get array of skills for user to pick from
-        String[] skills = new String[0];
+        String[] units = new String[0];
+        String[] weapons = new String[0];
+        String[] assists = new String[0];
+        String[] specials = new String[0];
+        String[] skillsA = new String[0];
+        String[] skillsB = new String[0];
+        String[] skillsC = new String[0];
+
         try {
-            skills = JSONGetter.getSkills(this);
+            units = JSONGetter.getData(this, "heroes", "name");
+            weapons = JSONGetter.getData(this, "weapons", "name");
+            assists = JSONGetter.getData(this, "assists", "name");
+            specials = JSONGetter.getData(this, "specials", "name");
+            skillsA = JSONGetter.getData(this, "passivea", "name");
+            skillsB = JSONGetter.getData(this, "passiveb", "name");
+            skillsC = JSONGetter.getData(this, "passivec", "name");
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
+        
         //Set autocomplete suggestions to stuff from array
-        AutoCompleteTextView editText = findViewById(R.id.edit_a_skill);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                R.layout.custom_list_item, R.id.text_view_list_item, skills);
-        editText.setAdapter(adapter);
+        ArrayAdapter<String> adapterArray0 = new ArrayAdapter<>(this,
+                R.layout.custom_list_item, R.id.text_view_list_item, units);
+        editText[0].setAdapter(adapterArray0);
+        ArrayAdapter<String> adapterArray1  = new ArrayAdapter<>(this,
+                R.layout.custom_list_item, R.id.text_view_list_item, weapons);
+        editText[1].setAdapter(adapterArray1);
+        ArrayAdapter<String> adapterArray2  = new ArrayAdapter<>(this,
+                R.layout.custom_list_item, R.id.text_view_list_item, assists);
+        editText[2].setAdapter(adapterArray2);
+        ArrayAdapter<String> adapterArray3  = new ArrayAdapter<>(this,
+                R.layout.custom_list_item, R.id.text_view_list_item, specials);
+        editText[3].setAdapter(adapterArray3);
+        ArrayAdapter<String> adapterArray4  = new ArrayAdapter<>(this,
+                R.layout.custom_list_item, R.id.text_view_list_item, skillsA);
+        editText[4].setAdapter(adapterArray4);
+        ArrayAdapter<String> adapterArray5  = new ArrayAdapter<>(this,
+                R.layout.custom_list_item, R.id.text_view_list_item, skillsB);
+        editText[5].setAdapter(adapterArray5);
+        ArrayAdapter<String> adapterArray6  = new ArrayAdapter<>(this,
+                R.layout.custom_list_item, R.id.text_view_list_item, skillsC);
+        editText[6].setAdapter(adapterArray6);
 
         //User makes changes...
 
@@ -99,10 +135,10 @@ public class EditBuildActivity extends AppCompatActivity {
                 //save the build to the database
                 Build build;
                 try{
-                    build = new Build(id, et_build[0].getText().toString(), et_build[1].getText().toString(),
-                            et_build[2].getText().toString(), et_build[3].getText().toString(),
-                            et_build[4].getText().toString(), et_build[5].getText().toString(),
-                            et_build[6].getText().toString(), et_build[7].getText().toString());
+                    build = new Build(id, buildText.getText().toString(), editText[0].getText().toString(), editText[1].getText().toString(),
+                            editText[2].getText().toString(), editText[3].getText().toString(),
+                            editText[4].getText().toString(), editText[5].getText().toString(),
+                            editText[6].getText().toString());
                 }
                 catch(Exception e){
                     Toast.makeText(getApplicationContext(), "Error creating build.", Toast.LENGTH_SHORT).show();
@@ -158,7 +194,7 @@ public class EditBuildActivity extends AppCompatActivity {
             if(MainActivity.isPro){
                 MainActivity.isPro = false;
                 editor.putBoolean("isPro_key", false);
-                editor.commit();
+                editor.apply();
             }
             else{
                 MainActivity.isPro = true;

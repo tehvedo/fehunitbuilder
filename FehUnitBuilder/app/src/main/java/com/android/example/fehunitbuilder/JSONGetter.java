@@ -40,15 +40,15 @@ class JSONGetter
         return json;
     }
 
-    static String[] getSkills(Context context) throws JSONException {
+    static String[] getData(Context context, String table, String stat) throws JSONException {
         JSONObject obj = new JSONObject(loadSkills(context));
         //Get data from table: skills
-        JSONArray objJSONArray = obj.getJSONArray("skills");
+        JSONArray objJSONArray = obj.getJSONArray(table);
 
         //Get names from skills table
         List<String> list = new ArrayList<>();
         for(int i = 0; i < objJSONArray.length(); i++){
-            list.add(objJSONArray.getJSONObject(i).getString("name"));
+            list.add(objJSONArray.getJSONObject(i).getString(stat));
         }
 
         //Make string array size equal to size of the list

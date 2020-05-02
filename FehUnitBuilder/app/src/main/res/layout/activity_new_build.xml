@@ -23,42 +23,46 @@
         android:textColorHint="@color/colorTextHint"
         android:autofillHints="Build Name" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/edit_unit"
         style="@style/text_view_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_unit"
+        android:completionThreshold="1"
         android:inputType="textAutoComplete"
         android:textColorHint="@color/colorTextHint"
         android:autofillHints="Unit Name" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/edit_weapon"
         style="@style/text_view_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_weapon"
+        android:completionThreshold="1"
         android:inputType="textAutoComplete"
         android:textColorHint="@color/colorTextHint"
         android:autofillHints="Weapon Name" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/edit_assist"
         style="@style/text_view_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_assist"
+        android:completionThreshold="1"
         android:inputType="textAutoComplete"
         android:textColorHint="@color/colorTextHint"
         android:autofillHints="Assist Name" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/edit_special"
         style="@style/text_view_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_special"
+        android:completionThreshold="1"
         android:inputType="textAutoComplete"
         android:textColorHint="@color/colorTextHint"
         android:autofillHints="Special Name" />
