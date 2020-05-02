@@ -270,6 +270,20 @@ public class EditBuildActivity extends AppCompatActivity {
             }
         });
 
+
+        //Make it so the drop down appears even if no text has been entered into a field
+        for(int i = 0; i<editText.length; i++) {
+            final int finalI = i;
+            editText[i].setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View view, boolean hasFocus) {
+                    if (hasFocus) {
+                        editText[finalI].showDropDown();
+                    }
+                }
+            });
+        }
+
         // **** End of AutoCompleteTextView code ****
 
         //User makes changes...
