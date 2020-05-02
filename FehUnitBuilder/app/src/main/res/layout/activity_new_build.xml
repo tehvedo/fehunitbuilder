@@ -1,108 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/scroll"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/colorScreenBackground">
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/colorBackground"
-    android:orientation="vertical"
-    android:padding="24dp">
-
-    <EditText
-        android:id="@+id/edit_build_name"
-        style="@style/text_view_style"
-        android:hint="@string/hint_build"
-        android:inputType="textAutoComplete"
-        android:textColorHint="@color/colorTextHint"
-        android:autofillHints="Build Name" />
-
-    <AutoCompleteTextView
-        android:id="@+id/edit_unit"
-        style="@style/text_view_style"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/hint_unit"
-        android:completionThreshold="1"
-        android:inputType="textAutoComplete"
-        android:textColorHint="@color/colorTextHint"
-        android:autofillHints="Unit Name" />
+        android:background="@color/colorBackground"
+        android:orientation="vertical"
+        android:padding="24dp">
 
-    <AutoCompleteTextView
-        android:id="@+id/edit_weapon"
-        style="@style/text_view_style"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/hint_weapon"
-        android:completionThreshold="1"
-        android:inputType="textAutoComplete"
-        android:textColorHint="@color/colorTextHint"
-        android:autofillHints="Weapon Name" />
+        <EditText
+            android:id="@+id/edit_build_name"
+            style="@style/text_view_style"
+            android:autofillHints="Build Name"
+            android:hint="@string/hint_build"
+            android:inputType="textAutoComplete"
+            android:textColorHint="@color/colorTextHint" />
 
-    <AutoCompleteTextView
-        android:id="@+id/edit_assist"
-        style="@style/text_view_style"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/hint_assist"
-        android:completionThreshold="1"
-        android:inputType="textAutoComplete"
-        android:textColorHint="@color/colorTextHint"
-        android:autofillHints="Assist Name" />
+        <AutoCompleteTextView
+            android:id="@+id/edit_unit"
+            style="@style/text_view_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="Unit Name"
+            android:completionThreshold="1"
+            android:hint="@string/hint_unit"
+            android:inputType="textAutoComplete"
+            android:textColorHint="@color/colorTextHint" />
 
-    <AutoCompleteTextView
-        android:id="@+id/edit_special"
-        style="@style/text_view_style"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/hint_special"
-        android:completionThreshold="1"
-        android:inputType="textAutoComplete"
-        android:textColorHint="@color/colorTextHint"
-        android:autofillHints="Special Name" />
+        <AutoCompleteTextView
+            android:id="@+id/edit_weapon"
+            style="@style/text_view_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="Weapon Name"
+            android:completionThreshold="1"
+            android:hint="@string/hint_weapon"
+            android:inputType="textAutoComplete"
+            android:textColorHint="@color/colorTextHint" />
 
-    <AutoCompleteTextView
-        android:id="@+id/edit_a_skill"
-        style="@style/text_view_style"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/hint_a_skill"
-        android:completionThreshold="1"
-        android:inputType="textAutoComplete"
-        android:textColorHint="@color/colorTextHint"
-        android:autofillHints="A Skill Name" />
+        <AutoCompleteTextView
+            android:id="@+id/edit_assist"
+            style="@style/text_view_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="Assist Name"
+            android:completionThreshold="1"
+            android:hint="@string/hint_assist"
+            android:inputType="textAutoComplete"
+            android:textColorHint="@color/colorTextHint" />
 
-    <AutoCompleteTextView
-        android:id="@+id/edit_b_skill"
-        style="@style/text_view_style"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/hint_b_skill"
-        android:completionThreshold="1"
-        android:inputType="textAutoComplete"
-        android:textColorHint="@color/colorTextHint"
-        android:autofillHints="B Skill Name" />
+        <AutoCompleteTextView
+            android:id="@+id/edit_special"
+            style="@style/text_view_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="Special Name"
+            android:completionThreshold="1"
+            android:hint="@string/hint_special"
+            android:inputType="textAutoComplete"
+            android:textColorHint="@color/colorTextHint" />
 
-    <AutoCompleteTextView
-        android:id="@+id/edit_c_skill"
-        style="@style/text_view_style"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/hint_c_skill"
-        android:completionThreshold="1"
-        android:inputType="textAutoComplete"
-        android:textColorHint="@color/colorTextHint"
-        android:autofillHints="C Skill Name" />
+        <AutoCompleteTextView
+            android:id="@+id/edit_a_skill"
+            style="@style/text_view_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="A Skill Name"
+            android:completionThreshold="1"
+            android:hint="@string/hint_a_skill"
+            android:inputType="textAutoComplete"
+            android:textColorHint="@color/colorTextHint" />
 
-    <Button
-        android:id="@+id/button_save"
-        style="@style/button_style"
-        android:text="@string/button_save" />
-</LinearLayout>
+        <AutoCompleteTextView
+            android:id="@+id/edit_b_skill"
+            style="@style/text_view_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="B Skill Name"
+            android:completionThreshold="1"
+            android:hint="@string/hint_b_skill"
+            android:inputType="textAutoComplete"
+            android:textColorHint="@color/colorTextHint" />
+
+        <AutoCompleteTextView
+            android:id="@+id/edit_c_skill"
+            style="@style/text_view_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="C Skill Name"
+            android:completionThreshold="1"
+            android:hint="@string/hint_c_skill"
+            android:inputType="textAutoComplete"
+            android:textColorHint="@color/colorTextHint" />
+
+        <Button
+            android:id="@+id/button_save"
+            style="@style/button_style"
+            android:text="@string/button_save" />
+    </LinearLayout>
 </ScrollView>
